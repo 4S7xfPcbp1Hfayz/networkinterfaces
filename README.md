@@ -1,49 +1,15 @@
 # Network Interfaces
-A simple PHP library for reading and manipulating the /etc/network/interfaces file in Debian based distributions. 
 
-Install:
+This is a fork of the [original Network Interfaces repository](https://github.com/carp3/networkinterfaces) created by [carp3](https://github.com/carp3).
 
-```
-composer require carp3/network-interfaces
-```
+Network Interfaces is a simple PHP library for reading and manipulating the `/etc/network/interfaces` file in Debian-based distributions.
 
-Usage: 
-```php 
-<?php
-//include composer autoloader
-include 'vendor/autoload.php';
+You can find the original repository [here](https://github.com/carp3/networkinterfaces).
 
-// 'import' NetworkInterfaces class
-use NetworkInterfaces\Adaptor;
-use NetworkInterfaces\NetworkInterfaces;
+## Description
 
-// create new handle from /etc/networking/interfaces
-$handle = new NetworkInterfaces('/etc/networking/interfaces');
+Network Interfaces is designed to provide an easy-to-use PHP interface for working with the `/etc/network/interfaces` configuration file on Debian-based Linux distributions. It simplifies the process of reading and manipulating network interface configurations, making it a valuable tool for system administrators and developers working on Debian-based systems.
 
-// parse file
-$handle->parse();
+## Credits
 
-// create new Adaptor and set configs
-$adaptor = new Adaptor();
-$adaptor->name = "eth2";
-$adaptor->family = "inet";
-$adaptor->name = "statis";
-$adaptor->address = '192.168.2.100';
-$adaptor->gateway = '192.168.2.1';
-$adaptor->netmask = '255.255.255.0';
-$adaptor->auto = true;
-$adaptor->allows[] = 'hotplug';
-
-// add adaptor to NetworkInterfaces instance
-$handle->add($adaptor);
-
-
-// change eth0 ip address
-$handle->Adaptors['eth0']->address = '192.168.0.30';
-
-// Write changes to /etc/networking/interfaces
-$handle->write();
-
-// bringing up new interface
-$handle->up('eth2');
-````
+- [carp3](https://github.com/carp3) - Original project creator
