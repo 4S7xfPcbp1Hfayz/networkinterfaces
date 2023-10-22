@@ -240,6 +240,19 @@ class NetworkInterfaces
     }
 
     /**
+     * get adrress of interface
+     * @param string $name Interface name
+     * @param bool $sudo use sudo command before ifconfig
+     * @throws Exception
+     */
+    public function address($name, $sudo = false)
+    {
+        $cmd = ($sudo ? 'sudo ' : '') . "ifconfig $name | awk '/netmask/ {print $2}'";
+        return shell_exec($cmd);
+    }
+
+
+    /**
      * restart an interface
      * @param string $name Interface name
      * @param bool $sudo use sudo command before ifup and ifdown
