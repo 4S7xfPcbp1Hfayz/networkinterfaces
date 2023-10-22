@@ -133,7 +133,6 @@ class NetworkInterfaces
             $this->_addAdaptor($chunk);
             $this->Adaptors[$chunk]->auto = True;
         }
-
     }
 
     /**
@@ -210,7 +209,6 @@ class NetworkInterfaces
             throw new Exception("$name does not exist is adaptor list");
         $cmd = ($sudo ? 'sudo ' : '') . "ifup $name";
         shell_exec($cmd);
-
     }
 
     /**
@@ -278,7 +276,6 @@ class NetworkInterfaces
         if ($return)
             return $imploded;
         return file_put_contents($this->_interfaceFile, $imploded);
-
     }
 
 
