@@ -13,7 +13,7 @@ NetworkInterfaces is designed to provide an easy-to-use PHP interface for workin
 To use this library, make sure you have the following dependencies installed:
 
 - [ethtool](https://linux.die.net/man/8/ethtool)
-- [net-tools](https://github.com/net-tools/net-tools)
+- [net-tools](https://packages.debian.org/en/sid/net-tools)
 
 ### Features
 
