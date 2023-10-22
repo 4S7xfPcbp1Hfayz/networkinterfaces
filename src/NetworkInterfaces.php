@@ -235,10 +235,6 @@ class NetworkInterfaces
      */
     public function mac($name, $sudo = false)
     {
-        if (!$this->_interfaceParsed)
-            throw new Exception("Interface file is not parsed");
-        if (!array_key_exists($name, $this->Adaptors))
-            throw new Exception("$name does not exist is adaptor list");
         $cmd = ($sudo ? 'sudo ' : '') . "ifconfig $name | awk '/ether/ {print $2}'";
         return shell_exec($cmd);
     }
