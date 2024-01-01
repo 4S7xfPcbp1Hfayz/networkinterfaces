@@ -236,43 +236,43 @@ class NetworkInterfaces
     public function mac($name, $sudo = false)
     {
         $cmd = ($sudo ? 'sudo ' : '') . "ifconfig $name | awk '/ether/ {print $2}'";
-        return shell_exec($cmd);
+        return trim(shell_exec($cmd));
     }
 
     /**
      * get address of interface
      * @param string $name Interface name
-     * @param bool $sudo use sudo command before ifconfig
+     * @param bool $sudo use sudo command before ip
      * @throws Exception
      */
     public function address($name, $sudo = false)
     {
-        $cmd = ($sudo ? 'sudo ' : '') . "ifconfig $name | awk '/netmask/ {print $2}'";
-        return shell_exec($cmd);
+        $cmd = ($sudo ? 'sudo ' : '') . "ip addr show $name | grep 'inet ' | awk '{print $2}' | cut -d'/' -f1";
+        return trim(shell_exec($cmd));
     }
 
     /**
      * get netmask of interface
      * @param string $name Interface name
-     * @param bool $sudo use sudo command before ifconfig
+     * @param bool $sudo use sudo command before ip
      * @throws Exception
      */
     public function netmask($name, $sudo = false)
     {
-        $cmd = ($sudo ? 'sudo ' : '') . "ifconfig $name | awk '/netmask/ {print $4}'";
-        return shell_exec($cmd);
+        $cmd = ($sudo ? 'sudo ' : '') . "ip addr show $name | grep 'inet ' | awk '{print $2}' | cut -d'/' -f2";
+        return trim(shell_exec($cmd));
     }
 
     /**
      * get mtu of interface
      * @param string $name Interface name
-     * @param bool $sudo use sudo command before ifconfig
+     * @param bool $sudo use sudo command before ip
      * @throws Exception
      */
     public function mtu($name, $sudo = false)
     {
-        $cmd = ($sudo ? 'sudo ' : '') . "ifconfig $name | awk '/mtu/ {print $4}'";
-        return shell_exec($cmd);
+        $cmd = ($sudo ? 'sudo ' : '') . "ip link show $name | grep 'mtu' | awk '{print $5}'";
+        return trim(shell_exec($cmd));
     }
 
     /**
@@ -302,13 +302,13 @@ class NetworkInterfaces
     /**
      * get gateway of interface
      * @param string $name Interface name
-     * @param bool $sudo use sudo command before ip route *
+     * @param bool $sudo use sudo command before ip route
      * @throws Exception
      */
     public function gateway($name, $sudo = false)
     {
-        $cmd = ($sudo ? 'sudo ' : '') . "ip route show | grep default | awk '{print $3}'";
-        return shell_exec($cmd);
+        $cmd = ($sudo ? 'sudo ' : '') . "ip route show default | grep $name | awk '{print $3}'";
+        return trim(shell_exec($cmd));
     }
 
     /**
