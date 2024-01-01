@@ -230,12 +230,12 @@ class NetworkInterfaces
     /**
      * get mac adrress of interface
      * @param string $name Interface name
-     * @param bool $sudo use sudo command before ifconfig
+     * @param bool $sudo use sudo command before ip
      * @throws Exception
      */
     public function mac($name, $sudo = false)
     {
-        $cmd = ($sudo ? 'sudo ' : '') . "ifconfig $name | awk '/ether/ {print $2}'";
+        $cmd = ($sudo ? 'sudo ' : '') . "ip link show $name | grep 'link/ether' | awk '{print $2}'";
         return trim(shell_exec($cmd));
     }
 
