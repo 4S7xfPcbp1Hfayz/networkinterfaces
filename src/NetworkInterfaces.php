@@ -207,7 +207,7 @@ class NetworkInterfaces
             throw new Exception("Interface file is not parsed");
         if (!array_key_exists($name, $this->Adaptors))
             throw new Exception("$name does not exist is adaptor list");
-        $cmd = ($sudo ? 'sudo ' : '') . "ifup $name";
+        $cmd = ($sudo ? 'sudo ' : '') . "ip link set $name up";
         shell_exec($cmd);
     }
 
@@ -223,7 +223,7 @@ class NetworkInterfaces
             throw new Exception("Interface file is not parsed");
         if (!array_key_exists($name, $this->Adaptors))
             throw new Exception("$name does not exist is adaptor list");
-        $cmd = ($sudo ? 'sudo ' : '') . "ifdown $name";
+        $cmd = ($sudo ? 'sudo ' : '') . "ip link set $name down";
         shell_exec($cmd);
     }
 
