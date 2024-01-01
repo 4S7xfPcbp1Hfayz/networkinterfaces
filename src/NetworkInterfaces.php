@@ -278,7 +278,7 @@ class NetworkInterfaces
     /**
      * get speed of interface
      * @param string $name Interface name
-     * @param bool $sudo use sudo command before ifconfig
+     * @param bool $sudo use sudo command before ethtool
      * @throws Exception
      */
     public function speed($name, $sudo = false)
@@ -290,7 +290,7 @@ class NetworkInterfaces
     /**
      * get duplex of interface
      * @param string $name Interface name
-     * @param bool $sudo use sudo command before ifconfig
+     * @param bool $sudo use sudo command before ethtool
      * @throws Exception
      */
     public function duplex($name, $sudo = false)
