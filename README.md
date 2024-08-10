@@ -26,7 +26,7 @@ With this forked version of NetworkInterfaces, you can:
 - Get the speed of an interface
 - Get the duplex mode of an interface
 - Get the gateway of an interface
-
+- Get the status of an interface to see if it is "up" or "down"
 ## Credits
 
 - [carp3](https://github.com/carp3) - Original project creator
