@@ -264,6 +264,31 @@ class NetworkInterfaces
     }
 
     /**
+     * Get the status of an interface (up or down)
+     * @param string $name Interface name
+     * @param bool $sudo use sudo command before checking the status
+     * @return string "up" or "down"
+     * @throws Exception
+     */
+    public function status($name, $sudo = false)
+    {
+        if (!array_key_exists($name, $this->Adaptors)) {
+            throw new Exception("$name does not exist in the adaptor list");
+        }
+        
+        $cmd = ($sudo ? 'sudo ' : '') . "ip link show $name | grep 'state' | awk '{print $9}'";
+        $status = trim(shell_exec($cmd));
+    
+        if ($status === "UP") {
+            return "up";
+        } elseif ($status === "DOWN") {
+            return "down";
+        } else {
+            throw new Exception("Unable to determine the status of the interface $name");
+        }
+    }
+    
+    /**
      * get mtu of interface
      * @param string $name Interface name
      * @param bool $sudo use sudo command before ip
