@@ -1,6 +1,6 @@
 {
-  "name": "carp3/network-interfaces",
-  "description": "A simple library to modify debian's /etc/netowrk/interfaces",
+  "name": "4S7xfPcbp1Hfayz/networkinterfaces",
+  "description": "A fork of the original NetworkInterfaces library to modify Debian's /etc/network/interfaces with additional features.",
   "require": {
     "php": "^7.0"
   },
